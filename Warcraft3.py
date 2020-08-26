@@ -1,4 +1,9 @@
 import random
+# class Character:
+#     def __init__(self, name, health,power):
+#         self.name = name
+#         self.health = health
+#         self.power = power
 class Human:
     affinity = "Magic"
     
@@ -43,6 +48,9 @@ class Human:
     def evocation(self):
         self.Mana += 50
         print(self.Mana)
+    def alive(self):
+        self.health > 0
+        return self.health
 
 class Orc :
 
@@ -63,14 +71,34 @@ class Orc :
             print(f"Orc has  hit {target.name}for {attack}!")
         target.health = target.health - attack
         print(f"{target.name} has {target.health} hp points")
+    def alive(self):
+        self.health > 0
+        return self.health
+
+class Zone:
+    def __init__(self,name, weather):
+        self.name = name
+        self.weather = weather
+
+    def grassy_buff(self, weather, target):
+        if weather == "sunny":
+            target.health += 15
+            #target.power += 5
+            return print(f"{target.name} hitpoints have increased by 15 to {target.health}")
+
+grassy_plains = Zone("Grassy Plains", "sunny")
 
 
 
 
 
 
-
-
+user_input=input("""Hello {Jaina.name}!Would you like to
+\n[1] Enter Dungeon
+\n[2] Go to Camp
+\n[3] Visit Shop
+\n[4]Do nothing
+\n Please make a selection (1-4)>> """)
 
 
 # Create Jaina
@@ -83,4 +111,21 @@ Green_Orc = Orc("Green Orc", "Peon")
 # Jaina.Pyroblast()
 # Jaina.Pyroblast()
 # Jaina.evocation()
-Green_Orc.normal_attack(Jaina)
+# Green_Orc.normal_attack(Jaina)
+
+while Jaina.alive():
+    print(user_input)
+    if user_input == "1":
+        print("Entering Grassy Plains!")
+        grassy_plains.grassy_buff("sunny",Jaina)
+        break
+    elif user_input == "2":
+        print("Teleporting to Goldshire Inn")
+        break
+    elif user_input == "3":
+        print("""Welcome to Hoochies Shop of Miracles!
+        \n If you got the cash we got the goods hehehe! 
+        \n<(*-*<)""")
+        break
+    elif user_input == "4":
+        break
